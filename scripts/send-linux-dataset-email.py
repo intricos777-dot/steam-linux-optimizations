@@ -6,8 +6,17 @@ import socket
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-EMAIL = "intricos777@gmail.com"
-APP_PASS = "hydx wjpd hnxl exum"
+import os
+
+EMAIL = os.environ.get("GG_EMAIL", "intricos777@gmail.com")
+# Load App Password from env (or a local .email-credentials file, gitignored).
+APP_PASS = os.environ.get("GG_APP_PASS", "")
+_creds = os.path.expanduser("~/.config/steam-linux-optimizations/email-credentials")
+if not APP_PASS and os.path.isfile(_creds):
+    with open(_creds) as f:
+        APP_PASS = f.read().strip()
+if not APP_PASS:
+    raise SystemExit("Set GG_APP_PASS (or create ~/.config/steam-linux-optimizations/email-credentials)")
 TO = ["support@arrowheadgames.com", "steam-support@valvesoftware.com"]
 DATE = __import__("datetime").date.today().isoformat()
 
