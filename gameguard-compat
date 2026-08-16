@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# GameGuard Compatibility Tool wrapper
+
+TOOL="/home/sin/Projects/gameguard-toolkit/tools/gameguard-compat.py"
+
+if [[ $EUID -ne 0 ]]; then
+    exec sudo -E "$TOOL" "$@"
+else
+    exec "$TOOL" "$@"
+fi

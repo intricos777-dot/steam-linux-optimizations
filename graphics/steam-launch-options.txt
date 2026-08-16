@@ -1,0 +1,15 @@
+# Steam Launch Options (Helldivers 2 / AppID 553850)
+Paste into: Steam -> Helldivers 2 -> Properties -> Launch Options
+
+-tcp PROTON_NO_ESYNC=1 PROTON_NO_FSYNC=1 DXVK_ASYNC=1 PROTON_USE_WINED3D=1 STEAM_OVERLAY=0 __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia DXVK_FILTER_DEVICE_NAME="NVIDIA GeForce RTX 3050 Laptop GPU"
+
+Breakdown:
+  -tcp                                     Force TCP (GameGuard WebSocket support)
+  PROTON_NO_ESYNC=1                        Disable esync (GameGuard stability)
+  PROTON_NO_FSYNC=1                        Disable fsync
+  PROTON_USE_WINED3D=1                     Software fallback stability
+  DXVK_ASYNC=1                             Async shader compilation
+  STEAM_OVERLAY=0                          Disable overlay (anti-cheat conflicts)
+  __NV_PRIME_RENDER_OFFLOAD=1              PRIME offload to NVIDIA
+  __GLX_VENDOR_LIBRARY_NAME=nvidia         Force NVIDIA GL vendor
+  DXVK_FILTER_DEVICE_NAME="..."            Pin DXVK to NVIDIA (Intel = backup)

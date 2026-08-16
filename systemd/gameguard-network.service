@@ -1,0 +1,19 @@
+[Unit]
+Description=GameGuard Network Preparation for Helldivers 2
+Documentation=https://github.com/intricos777-dot/gameguard-toolkit
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/iptables -I INPUT -p tcp --dport 28910:28919 -j ACCEPT
+ExecStartPre=/usr/bin/iptables -I INPUT -p udp --dport 28910:28919 -j ACCEPT
+ExecStartPre=/usr/bin/iptables -I OUTPUT -p tcp --dport 28910:28919 -j ACCEPT
+ExecStartPre=/usr/bin/iptables -I OUTPUT -p udp --dport 28910:28919 -j ACCEPT
+ExecStart=/home/sin/Projects/gameguard-toolkit/scripts/gameguard-prepare-network.sh
+RemainAfterExit=yes
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

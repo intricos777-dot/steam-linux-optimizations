@@ -1,0 +1,13 @@
+[Unit]
+Description=GPU Failover Watchdog (all Steam games)
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=/home/sin/.local/bin/gpu-watchdog
+ExecStop=/home/sin/.local/bin/gpu-watchdog stop
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
